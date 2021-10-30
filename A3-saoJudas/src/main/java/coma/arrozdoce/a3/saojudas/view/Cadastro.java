@@ -4,19 +4,29 @@
  */
 package coma.arrozdoce.a3.saojudas.view;
 
+import Controller.CadastroController;
+import coma.arrozdoce.a3.saojudas.model.Usuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
  * @author diogo
  */
 public class Cadastro extends javax.swing.JFrame {
+
+    private final CadastroController Controller;
    
     /**
      * Creates new form CadastroU
      */
     public Cadastro() {
         initComponents();
+        Controller = new CadastroController(this);
     }
 
     /**
@@ -51,7 +61,6 @@ public class Cadastro extends javax.swing.JFrame {
 
         jLabeCadastroUsuario.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabeCadastroUsuario.setText("Cadastro Úsuario");
-        jLabeCadastroUsuario.setSize(new java.awt.Dimension(60, 40));
 
         jLabelInformacaoUsuario.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabelInformacaoUsuario.setText("Informações úsuario");
@@ -93,6 +102,11 @@ public class Cadastro extends javax.swing.JFrame {
                 jButtonEnviarMouseClicked(evt);
             }
         });
+        jButtonEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEnviarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,11 +118,11 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(jLabelInformacaoUsuario)
                     .addComponent(jLabelNomeCompleto)
                     .addComponent(jLabeCadastroUsuario))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonEnviar)
-                .addContainerGap())
+                .addGap(29, 29, 29))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -139,9 +153,9 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabelInformacaoUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelNomeCompleto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                 .addComponent(jButtonEnviar)
-                .addContainerGap())
+                .addGap(47, 47, 47))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(112, 112, 112)
@@ -194,7 +208,7 @@ public class Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JTextFieldTelefoneFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldTelefoneFormActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_JTextFieldTelefoneFormActionPerformed
 
     private void jPasswordConfirmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordConfirmeActionPerformed
@@ -202,25 +216,68 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jPasswordConfirmeActionPerformed
 
     private void jButtonEnviarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEnviarMouseClicked
-      
-       String nomeCompleto = JTextFieldNomeCompletoForm.getText();
-       String email = JTextFieldEmailForm.getText();
-       String telefone =  JTextFieldTelefoneForm.getText();
-       String user = JTextFieldUsuario.getText();
-       char[] password = jPassword.getPassword();
-       char[] passwordConfirme = jPasswordConfirme.getPassword();
-       
-
+        
     }//GEN-LAST:event_jButtonEnviarMouseClicked
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-
-        this.setVisible(false);
+        
     }//GEN-LAST:event_jButtonVoltarActionPerformed
+
+    private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
+    Controller.cadastraUsuario();
+    }//GEN-LAST:event_jButtonEnviarActionPerformed
 
     /**
      * @param args the command line arguments
      */
+
+    public JTextField getJTextFieldEmailForm() {
+        return JTextFieldEmailForm;
+    }
+
+    public void setJTextFieldEmailForm(JTextField JTextFieldEmailForm) {
+        this.JTextFieldEmailForm = JTextFieldEmailForm;
+    }
+
+    public JTextField getJTextFieldNomeCompletoForm() {
+        return JTextFieldNomeCompletoForm;
+    }
+
+    public void setJTextFieldNomeCompletoForm(JTextField JTextFieldNomeCompletoForm) {
+        this.JTextFieldNomeCompletoForm = JTextFieldNomeCompletoForm;
+    }
+
+    public JTextField getJTextFieldTelefoneForm() {
+        return JTextFieldTelefoneForm;
+    }
+
+    public void setJTextFieldTelefoneForm(JTextField JTextFieldTelefoneForm) {
+        this.JTextFieldTelefoneForm = JTextFieldTelefoneForm;
+    }
+
+    public JTextField getJTextFieldUsuario() {
+        return JTextFieldUsuario;
+    }
+
+    public void setJTextFieldUsuario(JTextField JTextFieldUsuario) {
+        this.JTextFieldUsuario = JTextFieldUsuario;
+    }
+
+    public JPasswordField getjPassword() {
+        return jPassword;
+    }
+
+    public void setjPassword(JPasswordField jPassword) {
+        this.jPassword = jPassword;
+    }
+
+    public JPasswordField getjPasswordConfirme() {
+        return jPasswordConfirme;
+    }
+
+    public void setjPasswordConfirme(JPasswordField jPasswordConfirme) {
+        this.jPasswordConfirme = jPasswordConfirme;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTextFieldEmailForm;

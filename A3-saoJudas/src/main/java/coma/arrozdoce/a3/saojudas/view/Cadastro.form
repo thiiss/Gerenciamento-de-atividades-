@@ -53,12 +53,12 @@
                       <Component id="jLabelNomeCompleto" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabeCadastroUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace pref="55" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jButtonEnviar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -96,9 +96,9 @@
                   <Component id="jLabelInformacaoUsuario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelNomeCompleto" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="332" max="32767" attributes="0"/>
+                  <EmptySpace pref="299" max="32767" attributes="0"/>
                   <Component id="jButtonEnviar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -141,9 +141,6 @@
               <Font name="Lucida Grande" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cadastro &#xda;suario"/>
-            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[60, 40]"/>
-            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelInformacaoUsuario">
@@ -218,6 +215,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonEnviarMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEnviarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

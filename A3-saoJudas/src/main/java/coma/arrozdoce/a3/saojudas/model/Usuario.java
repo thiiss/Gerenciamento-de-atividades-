@@ -1,35 +1,23 @@
-package coma.arrozdoce.a3.saojudas.controller;
+package coma.arrozdoce.a3.saojudas.model;
 
-import coma.arrozdoce.a3.saojudas.model.ConnectionFactory;
+import coma.arrozdoce.a3.saojudas.dao.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Arrays;
 
-/**
- *
- * @author diogo
- */
-public class Cliente extends Usuario {
+public class Usuario {
+   private String nomeCompleto;
+   private String email;
+   private String telefone;
+   private String usuario;
+   private String senha;
 
-    private int keyUser;
-    private String nomeCompleto;
-    private String email;
-    private String telefone;
-
-    public Cliente(String nomeCompleto, String email, String usuario, String password, String telefone) {
-        super(usuario, password);
+    public Usuario(String nomeCompleto, String email, String telefone, String usuario, String senha) {
         this.nomeCompleto = nomeCompleto;
         this.email = email;
         this.telefone = telefone;
-    }
-
-    public int getKeyUser() {
-        return keyUser;
-    }
-
-    public void setKeyUser(int keyUser) {
-        this.keyUser = keyUser;
+        this.usuario = usuario;
+        this.senha = senha;
     }
 
     public String getNomeCompleto() {
@@ -56,8 +44,23 @@ public class Cliente extends Usuario {
         this.telefone = telefone;
     }
 
-    public void insert() throws SQLException {
-        String sqlInsert = "insert into usuarios(nome, email, telefone, usuario, password) values (?,?,?,?,?)";
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+        public void insert() throws SQLException {
+        String sqlInsert = "insert into usuario(nomeCompleto,email,telefone,usuario,senha) values (?,?,?,?,?)";
         ConnectionFactory conexao = new ConnectionFactory();
 
         try ( Connection conn = conexao.obterConexao()) {
@@ -66,9 +69,11 @@ public class Cliente extends Usuario {
             stm.setString(2, getEmail());
             stm.setString(3, getTelefone());
             stm.setString(4, getUsuario());
-            stm.setString(5, getPassword());
-
+            stm.setString(5, getSenha());
+            stm.execute();
+        }catch (SQLException e){
+            e.printStackTrace();
         }
-    }
-
+   
+}
 }
