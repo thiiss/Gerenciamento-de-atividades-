@@ -1,5 +1,5 @@
-package coma.arrozdoce.a3.saojudas.dao;
-
+package dao;
+        
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -21,5 +21,4 @@ public class ConnectionFactory {
             return null;
         }
     }
-
 }

@@ -2,16 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package coma.arrozdoce.a3.saojudas.view;
+package view;
 
 import Controller.CadastroController;
-import coma.arrozdoce.a3.saojudas.model.Usuario;
+import dao.ConnectionFactory;
+import dao.UsuarioDao;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import model.Usuario;
 
 /**
  *
@@ -19,14 +22,14 @@ import javax.swing.JTextField;
  */
 public class Cadastro extends javax.swing.JFrame {
 
-    private final CadastroController Controller;
-   
+    private final CadastroController controller;
+
     /**
      * Creates new form CadastroU
      */
     public Cadastro() {
         initComponents();
-        Controller = new CadastroController(this);
+        controller = new CadastroController(this); 
     }
 
     /**
@@ -57,7 +60,7 @@ public class Cadastro extends javax.swing.JFrame {
         jButtonVoltar = new javax.swing.JButton();
         jButtonEnviar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabeCadastroUsuario.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabeCadastroUsuario.setText("Cadastro Úsuario");
@@ -115,14 +118,17 @@ public class Cadastro extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelInformacaoUsuario)
-                    .addComponent(jLabelNomeCompleto)
-                    .addComponent(jLabeCadastroUsuario))
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonEnviar)
-                .addGap(29, 29, 29))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelInformacaoUsuario)
+                            .addComponent(jLabelNomeCompleto)
+                            .addComponent(jLabeCadastroUsuario))
+                        .addContainerGap(55, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonVoltar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonEnviar)
+                        .addGap(35, 35, 35))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -135,7 +141,6 @@ public class Cadastro extends javax.swing.JFrame {
                                 .addComponent(jLabelUsuario)
                                 .addComponent(jLabelPassword)
                                 .addComponent(jLabelComfirmePassword)
-                                .addComponent(jButtonVoltar)
                                 .addComponent(jPasswordConfirme, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                                 .addComponent(jPassword)
                                 .addComponent(JTextFieldUsuario))
@@ -153,9 +158,11 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabelInformacaoUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelNomeCompleto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
-                .addComponent(jButtonEnviar)
-                .addGap(47, 47, 47))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEnviar)
+                    .addComponent(jButtonVoltar))
+                .addGap(41, 41, 41))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(112, 112, 112)
@@ -182,9 +189,7 @@ public class Cadastro extends javax.swing.JFrame {
                     .addComponent(jLabelComfirmePassword)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPasswordConfirme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButtonVoltar)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(89, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,12 +229,8 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-    Controller.cadastraUsuario();
+        controller.cadastraUsuario();
     }//GEN-LAST:event_jButtonEnviarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
 
     public JTextField getJTextFieldEmailForm() {
         return JTextFieldEmailForm;
@@ -279,6 +280,8 @@ public class Cadastro extends javax.swing.JFrame {
         this.jPasswordConfirme = jPasswordConfirme;
     }
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTextFieldEmailForm;
     private javax.swing.JTextField JTextFieldNomeCompletoForm;
@@ -299,4 +302,5 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordConfirme;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
+
 }
