@@ -55,7 +55,7 @@
                               <Component id="jLabelNomeCompleto" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabeCadastroUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="76" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jButtonVoltar" min="-2" max="-2" attributes="0"/>

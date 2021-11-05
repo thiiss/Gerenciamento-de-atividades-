@@ -8,6 +8,7 @@ import Controller.CadastroController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -229,13 +230,17 @@ public class Cadastro extends javax.swing.JFrame {
         String telefone = this.getJTextFieldTelefoneForm().getText();
         String usuario = this.getJTextFieldUsuario().getText();
         String senha = this.getjPassword().getText();
-       // String confirmarsenha = this..getjPasswordConfirme().getText();
-        
-       CadastroController cadastroUsuario = new CadastroController(nomeCompleto,email,telefone, usuario, senha);
+        String confirmarsenha = this.getjPasswordConfirme().getText();
+    
+        if(senha.equals (confirmarsenha)){
+            CadastroController cadastroUsuario = new CadastroController(nomeCompleto,email,telefone, usuario, senha);
         try {
             cadastroUsuario.cadastrarUsuario();
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else{
+               JOptionPane.showMessageDialog(null, "senhas não conferem"); 
         }
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
