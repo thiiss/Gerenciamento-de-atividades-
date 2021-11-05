@@ -55,15 +55,15 @@
                               <Component id="jLabelNomeCompleto" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabeCadastroUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="55" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jButtonVoltar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jButtonEnviar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -71,21 +71,21 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelEmailUsario" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelPassword" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelComfirmePassword" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jPasswordConfirme" pref="244" max="32767" attributes="0"/>
-                                  <Component id="jPassword" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="JTextFieldUsuario" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="133" max="32767" attributes="0"/>
                           </Group>
                           <Component id="JTextFieldTelefoneForm" alignment="0" max="32767" attributes="0"/>
                           <Component id="JTextFieldEmailForm" alignment="0" max="32767" attributes="0"/>
                           <Component id="JTextFieldNomeCompletoForm" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JTextFieldUsuario" alignment="0" pref="275" max="32767" attributes="0"/>
+                          <Component id="jPassword" alignment="0" pref="275" max="32767" attributes="0"/>
+                          <Component id="jPasswordConfirme" alignment="0" pref="275" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -100,7 +100,7 @@
                   <Component id="jLabelInformacaoUsuario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelNomeCompleto" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="305" max="32767" attributes="0"/>
+                  <EmptySpace pref="326" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonEnviar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonVoltar" alignment="3" min="-2" max="-2" attributes="0"/>

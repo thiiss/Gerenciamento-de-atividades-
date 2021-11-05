@@ -5,16 +5,11 @@
 package view;
 
 import Controller.CadastroController;
-import dao.ConnectionFactory;
-import dao.UsuarioDao;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import model.Usuario;
 
 /**
  *
@@ -22,14 +17,12 @@ import model.Usuario;
  */
 public class Cadastro extends javax.swing.JFrame {
 
-    private final CadastroController controller;
-
-    /**
+      /**
      * Creates new form CadastroU
      */
     public Cadastro() {
         initComponents();
-        controller = new CadastroController(this); 
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -123,31 +116,31 @@ public class Cadastro extends javax.swing.JFrame {
                             .addComponent(jLabelInformacaoUsuario)
                             .addComponent(jLabelNomeCompleto)
                             .addComponent(jLabeCadastroUsuario))
-                        .addContainerGap(55, Short.MAX_VALUE))
+                        .addGap(0, 45, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonVoltar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonEnviar)
-                        .addGap(35, 35, 35))))
+                        .addComponent(jButtonEnviar)))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabelEmailUsario)
                                 .addComponent(jLabelTelefone)
                                 .addComponent(jLabelUsuario)
                                 .addComponent(jLabelPassword)
-                                .addComponent(jLabelComfirmePassword)
-                                .addComponent(jPasswordConfirme, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                                .addComponent(jPassword)
-                                .addComponent(JTextFieldUsuario))
-                            .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jLabelComfirmePassword))
+                            .addGap(0, 133, Short.MAX_VALUE))
                         .addComponent(JTextFieldTelefoneForm)
                         .addComponent(JTextFieldEmailForm)
-                        .addComponent(JTextFieldNomeCompletoForm))
+                        .addComponent(JTextFieldNomeCompletoForm)
+                        .addComponent(JTextFieldUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                        .addComponent(jPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                        .addComponent(jPasswordConfirme, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
                     .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,7 +151,7 @@ public class Cadastro extends javax.swing.JFrame {
                 .addComponent(jLabelInformacaoUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelNomeCompleto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEnviar)
                     .addComponent(jButtonVoltar))
@@ -225,11 +218,25 @@ public class Cadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEnviarMouseClicked
 
     private void jButtonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltarActionPerformed
-        
+        Login telalogin = new Login();
+        telalogin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonVoltarActionPerformed
 
     private void jButtonEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEnviarActionPerformed
-        controller.cadastraUsuario();
+        String nomeCompleto = this.getJTextFieldNomeCompletoForm().getText();
+        String email = this.getJTextFieldEmailForm().getText();
+        String telefone = this.getJTextFieldTelefoneForm().getText();
+        String usuario = this.getJTextFieldUsuario().getText();
+        String senha = this.getjPassword().getText();
+       // String confirmarsenha = this..getjPasswordConfirme().getText();
+        
+       CadastroController cadastroUsuario = new CadastroController(nomeCompleto,email,telefone, usuario, senha);
+        try {
+            cadastroUsuario.cadastrarUsuario();
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonEnviarActionPerformed
 
     public JTextField getJTextFieldEmailForm() {
