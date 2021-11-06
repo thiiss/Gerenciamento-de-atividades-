@@ -11,6 +11,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 /**
  *
@@ -24,6 +27,12 @@ public class Cadastro extends javax.swing.JFrame {
     public Cadastro() {
         initComponents();
         this.setLocationRelativeTo(null);
+        JTextFieldNomeCompletoForm.setDocument(new Documento(50));
+        JTextFieldEmailForm.setDocument(new Documento(30));
+        JTextFieldTelefoneForm.setDocument(new Documento(11));
+        JTextFieldUsuario.setDocument(new Documento(10));
+        jPassword.setDocument(new Documento(10));
+        jPasswordConfirme.setDocument(new Documento(10));
     }
 
     /**
@@ -315,4 +324,23 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
+}
+
+class Documento extends PlainDocument{
+    
+        int tam = 0;
+    public Documento(int a){
+        this.tam = a;
+    }
+    @Override
+    public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+      int tamanho = this.getLength() + str.length();
+      if(tamanho <= tam){
+        super.insertString(offs, str, a);
+      }else{
+        super.insertString(offs, str.replaceAll("[aA0-zZ9]",""), a);
+      }
+    }
+    
+    
 }
