@@ -24,7 +24,7 @@ public class LoginController{
     
     public void entrar() throws SQLException {
         if(verificarUsuarioESenha()){
-            TelaPrincipal telaprincipal = new TelaPrincipal();
+            TelaPrincipal telaprincipal = new TelaPrincipal(this.usuario);
             telaprincipal.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Usuario ou Senha Inválido!!!");

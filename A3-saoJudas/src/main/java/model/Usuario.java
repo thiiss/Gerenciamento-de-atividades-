@@ -74,7 +74,7 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
+    
     public void cadastrarUsuario() throws SQLException {
         String sqlInsert = "insert into A3SaoJudas.usuario(nomeCompleto,email,telefone,usuario,senha) values (?,?,?,?,?)";
         PreparedStatement stm = connection.prepareStatement(sqlInsert);
@@ -84,9 +84,8 @@ public class Usuario {
         stm.setString(4, this.getUsuario());
         stm.setString(5, this.getSenha());
         stm.execute();
-
     }
-
+    
     public boolean exiteUsuarioeSenha() throws SQLException {
         String sql = "select * from usuario where Usuario = ? and senha = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
@@ -95,6 +94,25 @@ public class Usuario {
         stm.execute();
         ResultSet consultaDoUsuario = stm.getResultSet();
         return consultaDoUsuario.next();
+    }   
+    
+    public void update() throws SQLException {
+        String sql = "update A3SaoJudas.usuario set nomeCompleto = ?, email = ?, telefone = ?, usuario = ?, senha = ?  where usuario = ? ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1, this.getNomeCompleto());
+        stm.setString(2, this.getEmail());
+        stm.setString(3, this.getTelefone());
+        stm.setString(4, this.getUsuario());
+        stm.setString(5, this.getSenha());
+        stm.setString(6, this.getUsuario());
+        System.out.println("texto"+sql);
+        stm.execute();
+    }
+    public void delete() throws SQLException{
+        String sql = "delete from usuario where Usuario = ? ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1, this.getUsuario());
+        stm.execute();        
     }
 
     public ArrayList<Usuario> selectAll() throws SQLException {
@@ -126,7 +144,18 @@ public class Usuario {
         stm.setString(1, usuarioCadastro);
         stm.execute();
         ResultSet consultaPorUsuario = stm.getResultSet();
-        return consultaPorUsuario.next();
+        if(consultaPorUsuario.next()){
+            System.out.println("Localizou Usuario");
+            this.nomeCompleto = consultaPorUsuario.getString("nomeCompleto");
+            this.email = consultaPorUsuario.getString("email");
+            this.telefone = consultaPorUsuario.getString("telefone");
+            this.usuario = consultaPorUsuario.getString("usuario");
+            this.senha = consultaPorUsuario.getString("senha");
+            return true;
+        }else{
+            System.out.println("Não Encontrou Usuario");
+            return false;
+        }
     }
 
     public boolean porEmail(String emailCadastro) throws SQLException {

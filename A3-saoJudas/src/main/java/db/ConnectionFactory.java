@@ -15,8 +15,6 @@ public class ConnectionFactory {
 
     public Connection obterConexao() throws SQLException {
         try {
-            
-            
             Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + bd+"?userTimezone=true&serverTimezone=UTC", usuario, senha);
             return conn;
         } catch (SQLException err) {
