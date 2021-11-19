@@ -23,16 +23,15 @@ public class LoginController{
         return consultaUsuario ;
     }
     
-    public void entrar() throws SQLException {
+    public boolean entrar() throws SQLException {
         if(verificarUsuarioESenha()){
             usuarioLogin.usuarioParamentro();
             TelaPrincipal telaprincipal = new TelaPrincipal(usuarioLogin);
-            telaprincipal.setVisible(true);
+            telaprincipal.setVisible(true); 
+            return true;
         }else{
-            JOptionPane.showMessageDialog(null, "Usuario ou Senha Inválido!!!");
+            return false;
         }       
     }
     
 }
-//
-//usuarioLogin

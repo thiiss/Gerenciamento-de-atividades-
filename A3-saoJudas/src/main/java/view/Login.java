@@ -8,6 +8,7 @@ import Controller.LoginController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -166,12 +167,17 @@ public class Login extends javax.swing.JFrame {
         String senha = this.getjPasswordFieldSenhaLogin().getText();
         try {
             LoginController controller = new LoginController(usuario, senha);
-            controller.entrar();
+            if (controller.entrar()) {
+                this.dispose();
+            } else {
+                jTextFieldUsuarioLogin.setText("");
+                jPasswordFieldSenhaLogin.setText("");
+                JOptionPane.showMessageDialog(null, "Senha Inválida");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ButtonEntrarActionPerformed
-
 
     /**
      * @param args the command line arguments

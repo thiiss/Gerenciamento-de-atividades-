@@ -106,6 +106,7 @@ public class Usuario {
 
             setNomeCompleto(resultSet.getString("nomeCompleto"));
             setEmail(resultSet.getString("email"));
+            setTelefone(resultSet.getString("telefone"));
             setUsuario(resultSet.getString("usuario"));
         }
 
