@@ -263,8 +263,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.fieldTelefone.setText(usuarioLogado.getTelefone());
         this.fieldUsuario.setText(usuarioLogado.getUsuario());
         this.senhaAntiga.setText(usuarioLogado.getSenha());
-        this.senhaNova.setText(usuarioLogado.getSenha());
-        this.confirmacaoSenhaNova.setText(usuarioLogado.getSenha());
     }//GEN-LAST:event_ButaoPerfilActionPerformed
 
     private void ButaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButaoSairActionPerformed
