@@ -5,6 +5,7 @@
  */
 package view;
 
+import Internal.PerfilUsuario;
 import model.Usuario;
 
 
@@ -21,9 +22,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
         initComponents();
-        this.usuario.setText(usuarioLogado.getUsuario());
-        this.email.setText(usuarioLogado.getEmail());
-        this.nomeCompleto.setText(usuarioLogado.getNomeCompleto());
+//       this.usuario.setText(usuarioLogado.getUsuario());
+//       this.email.setText(usuarioLogado.getEmail());
+//       this.nomeCompleto.setText(usuarioLogado.getNomeCompleto());
     }
 
     /**
@@ -35,137 +36,98 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
-        jPanel1 = new javax.swing.JPanel();
-        usuario = new javax.swing.JLabel();
-        nomeCompleto = new javax.swing.JLabel();
-        email = new javax.swing.JLabel();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        PainelControle = new javax.swing.JDesktopPane();
+        ButaoPerfil = new javax.swing.JButton();
+        ButaoProjeto = new javax.swing.JButton();
+        ButaoSair = new javax.swing.JButton();
+        Janelas = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        usuario.setText("Usuario");
-
-        nomeCompleto.setText("NomeCompleto");
-
-        email.setText("Email");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nomeCompleto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(usuario))
-                    .addComponent(email))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomeCompleto)
-                    .addComponent(usuario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(email)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jMenu2.setText("Perfil");
-
-        jMenuItem2.setText("Atualizar");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        ButaoPerfil.setText("Perfil");
+        ButaoPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                ButaoPerfilActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
 
-        jMenuItem3.setText("Excluir");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
+        ButaoProjeto.setText("Projeto");
 
-        jMenuBar2.add(jMenu2);
+        ButaoSair.setText("Sair");
 
-        jMenu6.setText("Edit");
-        jMenuBar2.add(jMenu6);
+        PainelControle.setLayer(ButaoPerfil, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelControle.setLayer(ButaoProjeto, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PainelControle.setLayer(ButaoSair, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        setJMenuBar(jMenuBar2);
+        javax.swing.GroupLayout PainelControleLayout = new javax.swing.GroupLayout(PainelControle);
+        PainelControle.setLayout(PainelControleLayout);
+        PainelControleLayout.setHorizontalGroup(
+            PainelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PainelControleLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(PainelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ButaoPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButaoSair, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButaoProjeto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        PainelControleLayout.setVerticalGroup(
+            PainelControleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PainelControleLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(ButaoPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(ButaoProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(ButaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(183, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout JanelasLayout = new javax.swing.GroupLayout(Janelas);
+        Janelas.setLayout(JanelasLayout);
+        JanelasLayout.setHorizontalGroup(
+            JanelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 528, Short.MAX_VALUE)
+        );
+        JanelasLayout.setVerticalGroup(
+            JanelasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 622, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(PainelControle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Janelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(657, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(268, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Janelas, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PainelControle))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-//        try {
-//            Connection connection = new ConnectionFactory().obterConexao();
-//            Usuario usuario = new Usuario();
-//            usuario.porUsuario(this.usuarioTela);
-//            usuario.setNomeCompleto(this.Teste.getText());
-//            usuario.update();
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-//
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-//        try {
-//            Connection connection = new ConnectionFactory().obterConexao();
-//            Usuario usuario = new Usuario();
-//            usuario.porUsuario(this.usuarioTela);
-//            usuario.delete();
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    private void ButaoPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButaoPerfilActionPerformed
+        PerfilUsuario perfil = new PerfilUsuario(usuarioLogado);
+        Janelas.add(perfil);
+        perfil.setVisible(true);
+    }//GEN-LAST:event_ButaoPerfilActionPerformed
 
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel email;
-    private javax.swing.Box.Filler filler1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel nomeCompleto;
-    private javax.swing.JLabel usuario;
+    private javax.swing.JButton ButaoPerfil;
+    private javax.swing.JButton ButaoProjeto;
+    private javax.swing.JButton ButaoSair;
+    private javax.swing.JDesktopPane Janelas;
+    private javax.swing.JDesktopPane PainelControle;
     // End of variables declaration//GEN-END:variables
 }
