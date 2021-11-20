@@ -1,7 +1,6 @@
 package Controller;
 
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import model.Usuario;
 import view.TelaPrincipal;
 

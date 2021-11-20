@@ -125,7 +125,7 @@ public class Usuario {
         stm.execute();
     }
 
-    public void delete() throws SQLException {
+    public void deleteMeuUsuario() throws SQLException {
         String sql = "delete from A3SaoJudas.usuario where usuario = ? ";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1, this.getUsuario());
