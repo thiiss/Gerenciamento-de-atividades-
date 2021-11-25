@@ -4,6 +4,7 @@
  */
 package Internal;
 
+import Controller.PerfilUsuarioController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,7 @@ public class PerfielUsuarioInternal extends javax.swing.JInternalFrame {
     /**
      * Creates new form PerfielUsuarioInternal
      */
-    private final Usuario usuarioLogado;
+    private Usuario usuarioLogado;
 
     public PerfielUsuarioInternal(Usuario usuarioLogado) {
         initComponents();
@@ -28,7 +29,7 @@ public class PerfielUsuarioInternal extends javax.swing.JInternalFrame {
         this.fieldEmail.setText(usuarioLogado.getEmail());
         this.fieldTelefone.setText(usuarioLogado.getTelefone());
         this.fieldUsuario.setText(usuarioLogado.getUsuario());
-        this.senhaAntiga.setText(usuarioLogado.getSenha());
+        
     }
 
     /**
@@ -220,7 +221,7 @@ public class PerfielUsuarioInternal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_confirmacaoSenhaNovaActionPerformed
 
     private void jButtonVoltar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoltar2ActionPerformed
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_jButtonVoltar2ActionPerformed
 
     private void jButtonEnviar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEnviar2MouseClicked
@@ -236,13 +237,14 @@ public class PerfielUsuarioInternal extends javax.swing.JInternalFrame {
         String comfirmaSenhaNova = this.confirmacaoSenhaNova.getText();
         String nomeCompleto = this.fieldNome.getText();
 
-        if(senhaNova.equals(comfirmaSenhaNova) && senhaNova != null){
-            PerfielUsuarioInternal updateUsuario = new PerfielUsuarioInternal(usuarioLogado, nomeCompleto,email,telefone, usuario, senhaAntiga, senhaNova);
+        if(senhaNova.equals(comfirmaSenhaNova)){
+            PerfilUsuarioController updateUsuario = new PerfilUsuarioController(usuarioLogado ,nomeCompleto,email,telefone, usuario, senhaAntiga, senhaNova);
             try {
-                cadastroUsuario.cadastrarUsuario();
+                this.usuarioLogado = updateUsuario.updateUsuario();
             } catch (SQLException ex) {
-                Logger.getLogger(Cadastro.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PerfielUsuarioInternal.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }else{
                JOptionPane.showMessageDialog(null, "senhas não conferem"); 
         }

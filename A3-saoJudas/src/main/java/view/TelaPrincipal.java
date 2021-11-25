@@ -1,21 +1,25 @@
 package view;
 
+import Internal.CadastroProjeto;
 import Internal.PerfielUsuarioInternal;
 import model.Usuario;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-    
+
     private final Usuario usuarioLogado;
-    private final PerfielUsuarioInternal perfilUsuario; 
-   
-    public TelaPrincipal(Usuario usuarioLogado) {       
-        this.usuarioLogado = usuarioLogado;
-        this.perfilUsuario = new PerfielUsuarioInternal(usuarioLogado);
+    private final PerfielUsuarioInternal perfilUsuario;
+    private CadastroProjeto cadastroProjeto;
+
+    public TelaPrincipal(Usuario usuarioLogado) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.usuarioLogado = usuarioLogado;
+        this.perfilUsuario = new PerfielUsuarioInternal(usuarioLogado);
+        this.cadastroProjeto = new CadastroProjeto(usuarioLogado);
+        this.conteiner.add(this.cadastroProjeto);
         this.conteiner.add(this.perfilUsuario);
 
-        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -119,17 +123,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButaoPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButaoPerfilActionPerformed
-              
-        perfilUsuario.setVisible(true);    
+                perfilUsuario.setVisible(true);
 
     }//GEN-LAST:event_ButaoPerfilActionPerformed
 
     private void ButaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButaoSairActionPerformed
-        
+        System.exit(NORMAL);
+        this.dispose();
     }//GEN-LAST:event_ButaoSairActionPerformed
 
     private void ButaoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButaoProjetoActionPerformed
-        // TODO add your handling code here:
+                cadastroProjeto.setVisible(true);
+
     }//GEN-LAST:event_ButaoProjetoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 public class Usuario {
-
+    private int idUsuario;
     private String nomeCompleto;
     private String email;
     private String telefone;
@@ -75,6 +75,15 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+    
+    
     public void cadastrarUsuario() throws SQLException {
         String sqlInsert = "insert into A3SaoJudas.usuario(nomeCompleto,email,telefone,usuario,senha) values (?,?,?,?,?)";
         PreparedStatement stm = connection.prepareStatement(sqlInsert);
@@ -103,7 +112,7 @@ public class Usuario {
     public void usuarioParamentro() throws SQLException {
         ResultSet resultSet = sqlConsultaUsuarioESenha();
         if (resultSet.first()) {
-
+            setIdUsuario(resultSet.getInt("id"));
             setNomeCompleto(resultSet.getString("nomeCompleto"));
             setEmail(resultSet.getString("email"));
             setTelefone(resultSet.getString("telefone"));
@@ -113,15 +122,14 @@ public class Usuario {
     }
 
     public void update() throws SQLException {
-        String sql = "update A3SaoJudas.usuario set nomeCompleto = ?, email = ?, telefone = ?, usuario = ?, senha = ?  where usuario = ? ";
+        String sql = "update A3SaoJudas.usuario set nomeCompleto = ?, email = ?, telefone = ?, usuario = ?, senha = ?  where id = ? ";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setString(1, this.getNomeCompleto());
         stm.setString(2, this.getEmail());
         stm.setString(3, this.getTelefone());
         stm.setString(4, this.getUsuario());
         stm.setString(5, this.getSenha());
-        stm.setString(6, this.getUsuario());
-        System.out.println("texto" + sql);
+        stm.setInt(6, this.getIdUsuario());
         stm.execute();
     }
 
