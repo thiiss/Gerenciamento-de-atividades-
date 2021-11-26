@@ -147,9 +147,10 @@ public class CadastroProjeto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttounSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttounSalvarActionPerformed
-       ProjetoController projeto = new ProjetoController( this.textoCadastroProjeto.getText(),this.fieldNomeProjeto.getText(), usuarioLogado.getIdUsuario());
+       ProjetoController projeto = new ProjetoController( this.fieldNomeProjeto.getText(),this.textoCadastroProjeto.getText(), usuarioLogado.getIdUsuario());
         try {
             projeto.salvarProjeto();
+            System.out.println("Projeto Criado e Salvo");
         } catch (SQLException ex) {
             Logger.getLogger(CadastroProjeto.class.getName()).log(Level.SEVERE, null, ex);
         }

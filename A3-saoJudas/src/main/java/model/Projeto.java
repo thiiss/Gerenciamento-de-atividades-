@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model;
 
 import db.ConnectionFactory;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,13 +18,26 @@ public class Projeto {
     private String nomeProjeto;
     private String textProjeto;
     private int IDUsuario;
+    private String dataCriacaoProjeto;
+
+    public String getDataCriacaoProjeto() {
+        return dataCriacaoProjeto;
+    }
+
+    public void setDataCriacaoProjeto(String dataCriacaoProjeto) {
+        this.dataCriacaoProjeto = dataCriacaoProjeto;
+    }
 
     public Projeto(String nomeProjeto, String textProjeto, int IDUsuario) throws SQLException {
         this.connection = new ConnectionFactory().obterConexao();
         this.nomeProjeto = nomeProjeto;
         this.textProjeto = textProjeto;
         this.IDUsuario = IDUsuario;
+    }
 
+    public Projeto(int IDUsuario) throws SQLException {
+        this.connection = new ConnectionFactory().obterConexao();
+        this.IDUsuario = IDUsuario;
     }
 
     public String getNomeProjeto() {
@@ -60,4 +72,43 @@ public class Projeto {
         stm.setString(3, getTextProjeto());
         stm.execute();
     }
+
+    public ArrayList<String> buscarProjetoByNome() throws SQLException {
+        ArrayList<String> projetos = new ArrayList<>();
+        String sql = "select nomeProjeto from A3SaoJudas.Projeto where fk_id_usuario = ?  ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, getIDUsuario());
+        stm.execute();
+        ResultSet resultset = stm.getResultSet();
+
+        while (resultset.next()) {
+            String nomeProjeto = resultset.getString("nomeProjeto");
+
+            projetos.add(nomeProjeto);
+        }
+
+        return projetos;
+    }
+
+    public ArrayList<String> buscarProjeto() throws SQLException {
+        ArrayList<String> projetos = new ArrayList<>();
+        String sql = "select * from A3SaoJudas.Projeto where fk_id_usuario = ?  ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, getIDUsuario());
+        stm.execute();
+        ResultSet resultset = stm.getResultSet();
+
+        while (resultset.next()) {
+            String nomeProjeto = resultset.getString("nomeProjeto");
+            String descricaoProjeto = resultset.getString("descricaoProjeto");
+            Date dataCriacao = resultset.getDate("dataCriacao");
+
+            projetos.add(nomeProjeto);
+            projetos.add(dataCriacao.toString());
+            projetos.add(descricaoProjeto);
+        }
+
+        return projetos;
+    }
+
 }
