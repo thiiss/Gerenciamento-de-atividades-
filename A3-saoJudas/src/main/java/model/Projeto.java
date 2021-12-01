@@ -39,6 +39,12 @@ public class Projeto {
         this.connection = new ConnectionFactory().obterConexao();
         this.IDUsuario = IDUsuario;
     }
+    
+    public Projeto(int IDUsuario, String nomeProjeto) throws SQLException {
+        this.connection = new ConnectionFactory().obterConexao();
+        this.IDUsuario = IDUsuario;
+        this.nomeProjeto = nomeProjeto;
+    }
 
     public String getNomeProjeto() {
         return nomeProjeto;
@@ -83,7 +89,6 @@ public class Projeto {
 
         while (resultset.next()) {
             String nomeProjeto = resultset.getString("nomeProjeto");
-
             projetos.add(nomeProjeto);
         }
 
@@ -92,22 +97,17 @@ public class Projeto {
 
     public ArrayList<String> buscarProjeto() throws SQLException {
         ArrayList<String> projetos = new ArrayList<>();
-        String sql = "select * from A3SaoJudas.Projeto where fk_id_usuario = ?  ";
+        String sql = "select * from A3SaoJudas.Projeto where fk_id_usuario = ? or nomeProjeto = ? ";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setInt(1, getIDUsuario());
+        stm.setString(2, getNomeProjeto());
         stm.execute();
         ResultSet resultset = stm.getResultSet();
-
         while (resultset.next()) {
             String nomeProjeto = resultset.getString("nomeProjeto");
             String descricaoProjeto = resultset.getString("descricaoProjeto");
             Date dataCriacao = resultset.getDate("dataCriacao");
-
-            projetos.add(nomeProjeto);
-            projetos.add(dataCriacao.toString());
-            projetos.add(descricaoProjeto);
         }
-
         return projetos;
     }
 
