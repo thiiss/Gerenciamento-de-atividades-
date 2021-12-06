@@ -1,6 +1,5 @@
 package view;
 
-import Controller.ProjetoController;
 import Internal.CadastroProjeto;
 import Internal.PerfielUsuarioInternal;
 import java.sql.SQLException;
@@ -20,8 +19,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.usuarioLogado = usuarioLogado;
         this.perfilUsuario = new PerfielUsuarioInternal(usuarioLogado);
         this.cadastroProjeto = new CadastroProjeto(usuarioLogado);
-        this.conteiner.add(this.cadastroProjeto);
-        this.conteiner.add(this.perfilUsuario);
+        this.conteudo.add(this.cadastroProjeto);
+        this.conteudo.add(this.perfilUsuario);
       
 
     }
@@ -30,12 +29,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuLateral = new javax.swing.JPanel();
-        ButaoSair = new javax.swing.JButton();
-        botaoProjeto = new javax.swing.JButton();
         conteiner = new javax.swing.JPanel();
         labelBemVindo = new javax.swing.JLabel();
-        conteinerProjetos = new javax.swing.JPanel();
         labelUltimoProjetos = new javax.swing.JLabel();
         conteinerProjeto = new javax.swing.JPanel();
         labelDataCriacao = new javax.swing.JLabel();
@@ -44,49 +39,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         nomeProjeto = new javax.swing.JLabel();
         labelConteudo = new javax.swing.JLabel();
         previaConteudo = new javax.swing.JLabel();
+        conteudo = new javax.swing.JPanel();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuPerfil = new javax.swing.JMenu();
         Conta = new javax.swing.JMenuItem();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jMenuProjeto = new javax.swing.JMenu();
         jMenuNovoProjeto = new javax.swing.JMenuItem();
         jMenuMeuProjeto = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        ButaoSair.setText("Sair");
-        ButaoSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButaoSairActionPerformed(evt);
-            }
-        });
-
-        botaoProjeto.setText("Projetos");
-        botaoProjeto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoProjetoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout menuLateralLayout = new javax.swing.GroupLayout(menuLateral);
-        menuLateral.setLayout(menuLateralLayout);
-        menuLateralLayout.setHorizontalGroup(
-            menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLateralLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(ButaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 278, Short.MAX_VALUE))
-        );
-        menuLateralLayout.setVerticalGroup(
-            menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLateralLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
 
         conteiner.setName(""); // NOI18N
         conteiner.setPreferredSize(new java.awt.Dimension(400, 600));
@@ -97,15 +59,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         labelDataCriacao.setText("Criação:");
 
-        dataCriacaoProjeto.setText("dataCriacao");
+        dataCriacaoProjeto.setText("2021-12-03");
 
         labelProjeto.setText("Projeto:");
 
-        nomeProjeto.setText("nomProjeto");
+        nomeProjeto.setText("Nome Projeto");
 
         labelConteudo.setText("Conteudo:");
 
-        previaConteudo.setText("Conteudo");
+        previaConteudo.setText("Descrição Conteudo");
 
         javax.swing.GroupLayout conteinerProjetoLayout = new javax.swing.GroupLayout(conteinerProjeto);
         conteinerProjeto.setLayout(conteinerProjetoLayout);
@@ -144,25 +106,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout conteinerProjetosLayout = new javax.swing.GroupLayout(conteinerProjetos);
-        conteinerProjetos.setLayout(conteinerProjetosLayout);
-        conteinerProjetosLayout.setHorizontalGroup(
-            conteinerProjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(conteinerProjetosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(conteinerProjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelUltimoProjetos)
-                    .addComponent(conteinerProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+        javax.swing.GroupLayout conteudoLayout = new javax.swing.GroupLayout(conteudo);
+        conteudo.setLayout(conteudoLayout);
+        conteudoLayout.setHorizontalGroup(
+            conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 409, Short.MAX_VALUE)
         );
-        conteinerProjetosLayout.setVerticalGroup(
-            conteinerProjetosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(conteinerProjetosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelUltimoProjetos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(conteinerProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        conteudoLayout.setVerticalGroup(
+            conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout conteinerLayout = new javax.swing.GroupLayout(conteiner);
@@ -173,17 +125,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(conteinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelBemVindo)
-                    .addComponent(conteinerProjetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(468, Short.MAX_VALUE))
+                    .addComponent(labelUltimoProjetos)
+                    .addComponent(conteinerProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(conteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         conteinerLayout.setVerticalGroup(
             conteinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(conteinerLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
                 .addComponent(labelBemVindo)
-                .addGap(30, 30, 30)
-                .addComponent(conteinerProjetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(360, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(labelUltimoProjetos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(conteinerProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(448, 448, 448))
+            .addGroup(conteinerLayout.createSequentialGroup()
+                .addComponent(conteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jMenuPerfil.setText("Perfil");
@@ -195,6 +154,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenuPerfil.add(Conta);
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("Sair");
+        jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuPerfil.add(jCheckBoxMenuItem1);
 
         jMenuBar.add(jMenuPerfil);
 
@@ -224,32 +192,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(conteiner, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(menuLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(conteiner, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(conteiner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(menuLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ButaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButaoSairActionPerformed
-        System.exit(NORMAL);
-        this.dispose();
-    }//GEN-LAST:event_ButaoSairActionPerformed
-
-    private void botaoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProjetoActionPerformed
-        this.perfilUsuario.setVisible(true);
-    }//GEN-LAST:event_botaoProjetoActionPerformed
 
     private void ContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContaActionPerformed
         this.perfilUsuario.setVisible(true);
@@ -269,14 +226,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuMeuProjetoActionPerformed
 
+    private void jCheckBoxMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItem1ActionPerformed
+        this.dispose();
+        System.exit(WIDTH);        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButaoSair;
     private javax.swing.JMenuItem Conta;
-    private javax.swing.JButton botaoProjeto;
     private javax.swing.JPanel conteiner;
     private javax.swing.JPanel conteinerProjeto;
-    private javax.swing.JPanel conteinerProjetos;
+    private javax.swing.JPanel conteudo;
     private javax.swing.JLabel dataCriacaoProjeto;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuMeuProjeto;
     private javax.swing.JMenuItem jMenuNovoProjeto;
@@ -287,7 +248,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel labelDataCriacao;
     private javax.swing.JLabel labelProjeto;
     private javax.swing.JLabel labelUltimoProjetos;
-    private javax.swing.JPanel menuLateral;
     private javax.swing.JLabel nomeProjeto;
     private javax.swing.JLabel previaConteudo;
     // End of variables declaration//GEN-END:variables

@@ -2,7 +2,6 @@ package model;
 
 import db.ConnectionFactory;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +17,7 @@ public class Projeto {
     private String nomeProjeto;
     private String textProjeto;
     private int IDUsuario;
+    private int IDProjeto;
     private String dataCriacaoProjeto;
 
     public String getDataCriacaoProjeto() {
@@ -39,11 +39,13 @@ public class Projeto {
         this.connection = new ConnectionFactory().obterConexao();
         this.IDUsuario = IDUsuario;
     }
-    
-    public Projeto(int IDUsuario, String nomeProjeto) throws SQLException {
-        this.connection = new ConnectionFactory().obterConexao();
-        this.IDUsuario = IDUsuario;
-        this.nomeProjeto = nomeProjeto;
+
+    public int getIDProjeto() {
+        return IDProjeto;
+    }
+
+    public void setIDProjeto(int IDProjeto) {
+        this.IDProjeto = IDProjeto;
     }
 
     public String getNomeProjeto() {
@@ -68,6 +70,16 @@ public class Projeto {
 
     public void setIDUsuario(int IDUsuario) {
         this.IDUsuario = IDUsuario;
+    }
+    
+    public void updateProjeto() throws SQLException{
+        String sql = "update A3SaoJudas.Projeto set nomeProjeto = ?, descricaoProjeto = ?  where id = ? ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setString(1, getNomeProjeto());
+        stm.setString(2, getTextProjeto());
+        stm.setInt(3, getIDProjeto());
+        stm.execute();
+        
     }
 
     public void criarProjeto() throws SQLException {
@@ -97,18 +109,33 @@ public class Projeto {
 
     public ArrayList<String> buscarProjeto() throws SQLException {
         ArrayList<String> projetos = new ArrayList<>();
-        String sql = "select * from A3SaoJudas.Projeto where fk_id_usuario = ? or nomeProjeto = ? ";
+        String sql = "select * from A3SaoJudas.Projeto where fk_id_usuario = ? and nomeProjeto = ? ";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setInt(1, getIDUsuario());
         stm.setString(2, getNomeProjeto());
         stm.execute();
         ResultSet resultset = stm.getResultSet();
-        while (resultset.next()) {
-            String nomeProjeto = resultset.getString("nomeProjeto");
-            String descricaoProjeto = resultset.getString("descricaoProjeto");
-            Date dataCriacao = resultset.getDate("dataCriacao");
+        if(resultset.next()){
+            
+        String bIDProjeto = resultset.getString("id");
+        String bNomeProjeto = resultset.getString("nomeProjeto");
+        String descricaoProjeto = resultset.getString("descricaoProjeto");
+        String DatePost = resultset.getDate("dataCriacao").toString();
+
+        projetos.add(bIDProjeto);
+        projetos.add(bNomeProjeto);
+        projetos.add(descricaoProjeto);
+        projetos.add(DatePost);
+
         }
         return projetos;
+    }
+
+    public void deleteProjeto() throws SQLException {
+        String sql = "delete from A3SaoJudas.Projeto where id = ? ";
+        PreparedStatement stm = connection.prepareStatement(sql);
+        stm.setInt(1, getIDProjeto());
+        stm.execute();
     }
 
 }
