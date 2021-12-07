@@ -21,7 +21,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.cadastroProjeto = new CadastroProjeto(usuarioLogado);
         this.conteudo.add(this.cadastroProjeto);
         this.conteudo.add(this.perfilUsuario);
-      
 
     }
 
@@ -218,9 +217,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuMeuProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMeuProjetoActionPerformed
         try {
+            this.dispose();
             TelaProjeto telaProjeto = new TelaProjeto(usuarioLogado);
             telaProjeto.setVisible(true);
-            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }

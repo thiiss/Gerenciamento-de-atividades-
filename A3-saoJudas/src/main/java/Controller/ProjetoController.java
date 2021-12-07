@@ -19,6 +19,17 @@ public class ProjetoController {
     private String textProjeto;
     private int IDUsuario;
     private int IDProjeto;
+    
+    
+    public ProjetoController(String nomeProjeto, String textProjeto, int IDUsuario) {
+        this.nomeProjeto = nomeProjeto;
+        this.textProjeto = textProjeto;
+        this.IDUsuario = IDUsuario;
+    }
+
+    public ProjetoController(int IDUsuario) {
+        this.IDUsuario = IDUsuario;
+    }
 
     public int getIDProjeto() {
         return IDProjeto;
@@ -52,15 +63,6 @@ public class ProjetoController {
         this.IDUsuario = IDUsuario;
     }
 
-    public ProjetoController(String nomeProjeto, String textProjeto, int IDUsuario) {
-        this.nomeProjeto = nomeProjeto;
-        this.textProjeto = textProjeto;
-        this.IDUsuario = IDUsuario;
-    }
-
-    public ProjetoController(int IDUsuario) {
-        this.IDUsuario = IDUsuario;
-    }
 
     public ArrayList<String> buscarProjetos() throws SQLException {
         Projeto projeto = new Projeto(this.IDUsuario);

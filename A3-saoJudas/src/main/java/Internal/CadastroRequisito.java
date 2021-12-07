@@ -4,6 +4,11 @@
  */
 package Internal;
 
+import Controller.RequisitoControlle;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Usuario;
 
 /**
@@ -16,9 +21,11 @@ public class CadastroRequisito extends javax.swing.JInternalFrame {
      * Creates new form CadastroProjeto
      */
     private Usuario usuarioLogado;
-    
-    public CadastroRequisito(Usuario usuarioLogado) {
+    private int IDProejto;
+
+    public CadastroRequisito(Usuario usuarioLogado, int IDProjeto) {
         initComponents();
+        this.IDProejto = IDProjeto;
         this.usuarioLogado = usuarioLogado;
     }
 
@@ -43,11 +50,11 @@ public class CadastroRequisito extends javax.swing.JInternalFrame {
         textDescricaoRequisito = new javax.swing.JTextArea();
         descricaoRequisito = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboBoxComplexiade = new javax.swing.JComboBox<>();
+        comboBoxPrioridade = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        comboBoxEstado = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         faseField = new javax.swing.JTextField();
         buttonVoltar = new javax.swing.JButton();
@@ -71,17 +78,17 @@ public class CadastroRequisito extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Complexidade");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxComplexiade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        comboBoxComplexiade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                comboBoxComplexiadeActionPerformed(evt);
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxPrioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        comboBoxPrioridade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                comboBoxPrioridadeActionPerformed(evt);
             }
         });
 
@@ -89,10 +96,10 @@ public class CadastroRequisito extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Estado");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Especificado", "Em andamento", "Finalizado" }));
-        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Especificado", "Em andamento", "Finalizado" }));
+        comboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox4ActionPerformed(evt);
+                comboBoxEstadoActionPerformed(evt);
             }
         });
 
@@ -136,11 +143,11 @@ public class CadastroRequisito extends javax.swing.JInternalFrame {
                             .addGroup(formularioDeProjetoLayout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addGroup(formularioDeProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboBoxEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel6)))
                             .addGroup(formularioDeProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboBoxPrioridade, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboBoxComplexiade, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(156, 156, 156))))
         );
@@ -171,18 +178,18 @@ public class CadastroRequisito extends javax.swing.JInternalFrame {
                     .addGroup(formularioDeProjetoLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboBoxPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(formularioDeProjetoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(formularioDeProjetoLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboBoxComplexiade, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54))
                             .addGroup(formularioDeProjetoLayout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(comboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(descricaoRequisito)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -257,7 +264,23 @@ public class CadastroRequisito extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buttonLimparActionPerformed
 
     private void buttounSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttounSalvarActionPerformed
-       
+        String funcionalidade = this.fieldFuncionalidade.getText();
+        String modulo = this.fieldModulo.getText();
+        String nomeRequisito = this.fieldNomeRequisito.getText();
+        String textDescrucai = this.textDescricaoRequisito.getText();
+        String fase = this.faseField.getText();
+        int prioridade = Integer.parseInt(this.comboBoxPrioridade.getSelectedItem().toString());
+        String estado = this.comboBoxEstado.getSelectedItem().toString();
+        int complexidade = Integer.parseInt(this.comboBoxComplexiade.getSelectedItem().toString());
+
+        try {
+            RequisitoControlle requisito = new RequisitoControlle(funcionalidade, modulo, nomeRequisito, textDescrucai, fase, prioridade, estado, complexidade, this.IDProejto, this.usuarioLogado.getIdUsuario());
+            requisito.salvarRequisito();
+            JOptionPane.showInternalMessageDialog(null, "Requisito Salvo!");
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroRequisito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_buttounSalvarActionPerformed
 
     private void buttounSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttounSalvarMouseClicked
@@ -272,23 +295,26 @@ public class CadastroRequisito extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_faseFieldActionPerformed
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+    private void comboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    }//GEN-LAST:event_comboBoxEstadoActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void comboBoxPrioridadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPrioridadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_comboBoxPrioridadeActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void comboBoxComplexiadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxComplexiadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_comboBoxComplexiadeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLimpar;
     private javax.swing.JButton buttonVoltar;
     private javax.swing.JButton buttounSalvar;
+    private javax.swing.JComboBox<String> comboBoxComplexiade;
+    private javax.swing.JComboBox<String> comboBoxEstado;
+    private javax.swing.JComboBox<String> comboBoxPrioridade;
     private javax.swing.JLabel descricaoLabel;
     private javax.swing.JLabel descricaoRequisito;
     private javax.swing.JTextField faseField;
@@ -296,9 +322,6 @@ public class CadastroRequisito extends javax.swing.JInternalFrame {
     private javax.swing.JTextField fieldModulo;
     private javax.swing.JTextField fieldNomeRequisito;
     private javax.swing.JPanel formularioDeProjeto;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

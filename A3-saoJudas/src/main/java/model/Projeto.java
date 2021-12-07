@@ -132,9 +132,10 @@ public class Projeto {
     }
 
     public void deleteProjeto() throws SQLException {
-        String sql = "delete from A3SaoJudas.Projeto where id = ? ";
+        String sql = "delete from A3SaoJudas.Projeto where fk_id_usuario =(select id from A3SaoJudas.usuario where id = ?) and id = ?";
         PreparedStatement stm = connection.prepareStatement(sql);
         stm.setInt(1, getIDProjeto());
+        stm.setInt(2, getIDUsuario());
         stm.execute();
     }
 

@@ -4,9 +4,11 @@ import Controller.ProjetoController;
 import Internal.CadastroProjeto;
 import Internal.CadastroRequisito;
 import Internal.PerfielUsuarioInternal;
+import Internal.RequisitoInternal;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Requisito;
 import model.Usuario;
 
 /**
@@ -16,30 +18,17 @@ import model.Usuario;
 public class TelaProjeto extends javax.swing.JFrame {
 
     private final Usuario usuarioLogado;
-    private PerfielUsuarioInternal perfilUsuario;
-    private CadastroProjeto cadastroProjeto;
     private ProjetoController projeto;
-    private CadastroRequisito cadastroRequisito;
-    
+
     public TelaProjeto(Usuario usuarioLogado) throws SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
         this.usuarioLogado = usuarioLogado;
-        this.perfilUsuario = new PerfielUsuarioInternal(usuarioLogado);
-        this.cadastroProjeto = new CadastroProjeto(usuarioLogado);
-        this.cadastroRequisito = new CadastroRequisito(usuarioLogado);
-        
-        
-        this.conteudo.add(this.cadastroRequisito);
-        this.conteudo.add(this.cadastroProjeto);
-        this.conteudo.add(this.perfilUsuario);
-
         this.projeto = new ProjetoController(usuarioLogado.getIdUsuario());
 
         for (String buscarProjeto : this.projeto.buscarProjetosByNome()) {
             jBoxProjetos.addItem(buscarProjeto);
         }
-               this.jScrollPane2.setVisible(false);
 
     }
 
@@ -48,8 +37,6 @@ public class TelaProjeto extends javax.swing.JFrame {
     private void initComponents() {
 
         conteudo = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         conteiner = new javax.swing.JPanel();
         labelProjeto = new javax.swing.JLabel();
         jBoxProjetos = new javax.swing.JComboBox<>();
@@ -61,6 +48,7 @@ public class TelaProjeto extends javax.swing.JFrame {
         dataCriacao = new javax.swing.JLabel();
         idLabelProjeto = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuPerfil = new javax.swing.JMenu();
         Conta = new javax.swing.JMenuItem();
@@ -71,33 +59,15 @@ public class TelaProjeto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Requisito ", "Cadastro de Usuario", "2021-12-05", "Em andamento", null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Nome", "Descrição", "Data Criação", "Estado", "Criado Por"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
-
         javax.swing.GroupLayout conteudoLayout = new javax.swing.GroupLayout(conteudo);
         conteudo.setLayout(conteudoLayout);
         conteudoLayout.setHorizontalGroup(
             conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(conteudoLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 818, Short.MAX_VALUE)
         );
         conteudoLayout.setVerticalGroup(
             conteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(conteudoLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 92, Short.MAX_VALUE))
+            .addGap(0, 624, Short.MAX_VALUE)
         );
 
         labelProjeto.setText("Projeto:");
@@ -142,6 +112,13 @@ public class TelaProjeto extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Requisitos");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout conteinerLayout = new javax.swing.GroupLayout(conteiner);
         conteiner.setLayout(conteinerLayout);
         conteinerLayout.setHorizontalGroup(
@@ -150,23 +127,32 @@ public class TelaProjeto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(conteinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(conteinerLayout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(conteinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, conteinerLayout.createSequentialGroup()
-                            .addComponent(labelProjeto)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(idLabelProjeto))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, conteinerLayout.createSequentialGroup()
-                            .addComponent(jBoxProjetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(dataCriacao))
-                        .addComponent(fildTitulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                        .addGroup(conteinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(conteinerLayout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(conteinerLayout.createSequentialGroup()
+                                .addGroup(conteinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(conteinerLayout.createSequentialGroup()
+                                        .addComponent(labelProjeto)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(idLabelProjeto))
+                                    .addGroup(conteinerLayout.createSequentialGroup()
+                                        .addComponent(jBoxProjetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dataCriacao)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(12, 12, 12))
+                    .addGroup(conteinerLayout.createSequentialGroup()
+                        .addGroup(conteinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(fildTitulo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())))
         );
         conteinerLayout.setVerticalGroup(
             conteinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +173,8 @@ public class TelaProjeto extends javax.swing.JFrame {
                 .addGroup(conteinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -260,13 +247,13 @@ public class TelaProjeto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContaActionPerformed
-        this.perfilUsuario.setVisible(true);
+        PerfielUsuarioInternal perfilUsuario = new PerfielUsuarioInternal(usuarioLogado);
+        this.conteudo.add(perfilUsuario);
+        perfilUsuario.setVisible(true);
     }//GEN-LAST:event_ContaActionPerformed
 
     private void jBoxProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBoxProjetosActionPerformed
         String conteudojBox = this.jBoxProjetos.getSelectedItem().toString();
-                    this.jScrollPane2.setVisible(true);
-
         if (!conteudojBox.equals("Selecione um Item")) {
             this.projeto.setNomeProjeto(conteudojBox);
 
@@ -314,7 +301,7 @@ public class TelaProjeto extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
-            
+
             String idNumbProjeto = this.idLabelProjeto.getText();
             System.out.print(idNumbProjeto);
             projeto.setIDProjeto(Integer.parseInt(idNumbProjeto));
@@ -328,32 +315,48 @@ public class TelaProjeto extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        CadastroRequisito cadastroRequisito = new CadastroRequisito(usuarioLogado, projeto.getIDProjeto());
+        this.conteudo.add(cadastroRequisito);
         cadastroRequisito.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        this.jScrollPane2.setVisible(false);
-        
+        CadastroRequisito cadastroRequisito = new CadastroRequisito(usuarioLogado, projeto.getIDProjeto());
+        this.conteudo.add(cadastroRequisito);
         cadastroRequisito.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-      this.dispose();
-      
+        this.dispose();
+
         try {
-           TelaPrincipal tela = new TelaPrincipal(usuarioLogado);
+            TelaPrincipal tela = new TelaPrincipal(usuarioLogado);
             tela.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(TelaProjeto.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         this.dispose();
         System.exit(WIDTH);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        try {
+            System.out.println(usuarioLogado.getIdUsuario());
+            System.out.println(projeto.getIDProjeto());
+            RequisitoInternal requisitoInternal = new RequisitoInternal(usuarioLogado.getIdUsuario(), projeto.getIDProjeto());
+            this.conteudo.add(requisitoInternal);
+            requisitoInternal.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaProjeto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -368,6 +371,7 @@ public class TelaProjeto extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -375,8 +379,6 @@ public class TelaProjeto extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuPerfil;
     private javax.swing.JMenu jMenuRequisito;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelProjeto;
     // End of variables declaration//GEN-END:variables
 }
